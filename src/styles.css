@@ -1,0 +1,152 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-charcoal: var(--charcoal);
+  --color-warm-white: var(--warm-white);
+  --color-soft-gray: var(--soft-gray);
+}
+
+:root {
+  --radius: 0.25rem;
+
+  /* Havenza brand tokens */
+  --background: oklch(0.14 0.005 60);           /* #0D0D0C */
+  --foreground: oklch(0.95 0.012 85);            /* warm white */
+  --charcoal: oklch(0.19 0.006 60);              /* #1D1D1B */
+  --gold: oklch(0.76 0.11 82);                   /* #C9A961 */
+  --gold-soft: oklch(0.82 0.08 82);
+  --warm-white: oklch(0.95 0.012 85);            /* #F5F3EE */
+  --soft-gray: oklch(0.68 0.015 80);             /* #A39C8F */
+
+  --card: oklch(0.19 0.006 60);
+  --card-foreground: oklch(0.95 0.012 85);
+  --popover: oklch(0.14 0.005 60);
+  --popover-foreground: oklch(0.95 0.012 85);
+  --primary: oklch(0.76 0.11 82);
+  --primary-foreground: oklch(0.14 0.005 60);
+  --secondary: oklch(0.19 0.006 60);
+  --secondary-foreground: oklch(0.95 0.012 85);
+  --muted: oklch(0.19 0.006 60);
+  --muted-foreground: oklch(0.68 0.015 80);
+  --accent: oklch(0.76 0.11 82);
+  --accent-foreground: oklch(0.14 0.005 60);
+  --destructive: oklch(0.55 0.2 27);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 12%);
+  --ring: oklch(0.76 0.11 82);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    background-color: var(--color-background);
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  ::selection {
+    background-color: var(--gold);
+    color: var(--background);
+  }
+  :focus-visible {
+    outline: 1px solid var(--gold);
+    outline-offset: 3px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@utility container-h {
+  width: min(87vw, 1440px);
+  max-width: 1440px;
+  margin-inline: auto;
+}
+
+@utility gold-rule {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+
+@utility sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+@utility not-sr-only {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
